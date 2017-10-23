@@ -1,9 +1,9 @@
 # Docker Android Build Box
 
 
-[![Build Status](https://travis-ci.org/mingchen/docker-android-build-box.svg?branch=master)](https://travis-ci.org/mingchen/docker-android-build-box)
+[![Build Status](https://travis-ci.org/boris-penev/docker-android-build-box.svg?branch=master)](https://travis-ci.org/boris-penev/docker-android-build-box)
 
-[![docker icon](http://dockeri.co/image/mingc/android-build-box)](https://hub.docker.com/r/mingc/android-build-box/)
+[![docker icon](http://dockeri.co/image/borispenev/docker-android-build-box)](https://hub.docker.com/r/borispenev/docker-android-build-box/)
 
 
 ## Introduction
@@ -11,43 +11,50 @@
 A **docker** image build with **Android** build environment.
 
 
-## What's Inside
+## What Is Inside
 
-It include following components:
+It includes the following components:
 
-* Ubuntu 16.04
-* Android SDK 16 17 18 19 20 21 22 23 24 25
-* Android build tools 21.1.2 22.0.1 23.0.1 23.0.2 23.0.3 24 24.0.1 24.0.2 24.0.3 25 25.0.1 25.0.2 25.0.3
-* Android NDK r13b
+* Ubuntu 17.10
+* Android SDK 16 17 18 19 20 21 22 23 24 25 26
+* Android build tools 17.0.0 18.1.1 19.1.0 20.0.0 21.1.2 22.0.1 23.0.1 23.0.2 23.0.3 24.0.0 24.0.1 24.0.2 24.0.3 25.0.0 25.0.1 25.0.2 25.0.3 26.0.0 26.0.1 26.0.2
+* Android NDK r15c
 * extra-android-m2repository
-* extra-google-google\_play\_services
 * extra-google-m2repository
+* extra-google-google\_play\_services
+* Google API add-ons
+* Android Emulator
+* Constraint Layout
+* TestNG
+* Python 2, Python 3
+* Node.js, npm, React Native
+* Ruby, RubyGems, fastlane
 
 
 ## Docker Pull Command
 
-The docker image is publicly automated build on [Docker Hub](https://hub.docker.com/r/mingc/android-build-box/) based on Dockerfile in this repo, so there is no hidden staff in image. To pull the latest docker image:
+The docker image is publicly automated build on [Docker Hub](https://hub.docker.com/r/borispenev/docker-android-build-box/) based on the Dockerfile in this repo, so there is no hidden stuff in it. To pull the latest docker image:
 
-    docker pull mingc/android-build-box:latest
+    docker pull borispenev/docker-android-build-box:latest
 
 
 ## Usage
 
-### Use image to build Android project
+### Use the image to build an Android project
 
 You can use this docker image to build your Android project with a single docker command:
 
     cd <android project directory>  # change working directory to your project root directory.
-    docker run --rm -v `pwd`:/project mingc/android-build-box bash -c 'cd /project; ./gradlew build'
+    docker run --rm -v `pwd`:/project borispenev/docker-android-build-box bash -c 'cd /project; ./gradlew build'
 
 
 
-### Use image for Bitbucket pipeline
+### Use the image for a Bitbucket pipeline
 
-If you have Android code in Bitbucket and want to use it pipeline to build your Android code, you can simply specific this docker image.
+If you have an Android project in a Bitbucket repository and want to use its pipeline to build it, you can simply specify this docker image.
 Here is an example of `bitbucket-pipelines.yml`
 
-    image: mingc/android-build-box:latest
+    image: borispenev/docker-android-build-box:latest
 
     pipelines:
       default:
@@ -56,18 +63,20 @@ Here is an example of `bitbucket-pipelines.yml`
               - chmod +x gradlew
               - ./gradlew assemble
 
+If gradlew is marked as executable in your repository as recommended, remove the `chmod` command.
+
 
 ## Docker Build Image
 
-If you want to build docker image by yourself, you can use following `docker build` command to build your image.
-The image itself up to 5.5 GB, check your free disk space before build it.
+If you want to build the docker image by yourself, you can use following command.
+The image itself is more than 5 GB, check your free disk space before building it.
 
     docker build -t android-build-box .
 
 
 ## Contribution
 
-If you want to enhance this docker image for fix something, feel free to send [pull request](https://github.com/mingchen/docker-android-build-box/pull/new/master).
+If you want to enhance this docker image for fix something, feel free to send [pull request](https://github.com/boris-penev/docker-android-build-box/pull/new/master).
 
 
 ## References
